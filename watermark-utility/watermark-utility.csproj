@@ -6,4 +6,8 @@
     <RootNamespace>watermark_utility</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="itext7" Version="7.1.13" />
+  </ItemGroup>
+
 </Project>
