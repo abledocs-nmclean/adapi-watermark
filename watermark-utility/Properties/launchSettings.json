@@ -2,7 +2,7 @@
   "profiles": {
     "watermark-utility": {
       "commandName": "Project",
-      "commandLineArgs": "--input <placeholder> --output <placeholder>"
+      "commandLineArgs": "--input <placeholder> --output <placeholder> --pages <placeholder> --text \"<placeholder>\""
     }
   }
 }
