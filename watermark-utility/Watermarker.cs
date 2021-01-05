@@ -13,9 +13,9 @@ using System.CommandLine.Invocation;
 
 namespace watermark_utility
 {
-    class Watermarker
+    public class Watermarker
     {
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
             Console.WriteLine("Watermark Utility");
             var pageOptions = new ArrayList();
