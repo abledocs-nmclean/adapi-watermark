@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "watermark-utility": {
+      "commandName": "Project",
+      "commandLineArgs": "--input <placeholder> --output <placeholder>"
+    }
+  }
+}
