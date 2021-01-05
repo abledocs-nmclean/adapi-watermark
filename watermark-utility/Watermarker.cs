@@ -12,7 +12,7 @@ using System.CommandLine.Invocation;
 
 namespace watermark_utility
 {
-    class Program
+    class Watermarker
     {
         static int Main(string[] args)
         {
