@@ -29,6 +29,7 @@ steps:
     command: 'build'
     projects: 'watermark-utility\WatermarkUtility.csproj'
     arguments: '--configuration $(buildConfiguration)'
+  condition: succeeded()
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Watermark Utility Tests'
@@ -36,6 +37,7 @@ steps:
     command: 'test'
     projects: 'watermark-utility-tests\WatermarkUtilityTests.csproj'
     arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+  condition: succeeded()
 
 - task: DotNetCoreCLI@2
   displayName: 'Package Watermark Utility'
@@ -43,12 +45,14 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: 'watermark-utility\WatermarkUtility.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/Output'
+    arguments: '--configuration $(BuildConfiguration) --self-contained true --runtime win10-x64 --output $(Build.ArtifactStagingDirectory)/Output'
     zipAfterPublish: true
     modifyOutputPath: true
+  condition: succeeded()
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Watermark Utility to Pipelines'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)/Output'
     artifactName: 'watermark-utility-$(tag)'
+  condition: succeeded()
