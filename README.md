@@ -11,9 +11,19 @@ This is a small utility that will watermark a PDF document.
     - Before running the project you should open and edit the `launchSettings.json` file and replace
     the `<placeholder>` text with real values.
 
+#### Building from the Command Line
+From the root of the repository
+- `dotnet build .\watermark-utility\WatermarkUtility.csproj`
+
+This will output a self-contained .net 5.0 command line application in `\watermark-utility\bin\Debug\net5.0\`.
+
 #### Running tests
 - In Visual Studio, select the _Test_ menu item
 - Select **Run All Tests**
+
+#### Running tests from the Command Line
+From the root of the repository
+- `dotnet test .\watermark-utility-tests\WatermarkUtilityTests.csproj`
 
 ### Project Structure
 - adapi-watermark
