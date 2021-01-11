@@ -15,6 +15,7 @@ using System.Collections;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Resources;
+using System.Text;
 
 namespace watermark_utility
 {
@@ -50,18 +51,29 @@ namespace watermark_utility
                     "--image",
                     description: "Should an image be added as a watermark? Accepted values: 'true' or 'false'",
                     getDefaultValue: () => "true"
+                ),
+                new Option<String>(
+                    "--outputPassword",
+                    description: "The password that should be applied to the document as the Owner Password",
+                    getDefaultValue: () => null
                 )
             };
 
             rootCommand.Description = "A simple utility that adds a watermark to a PDF and writes a new copy.";
 
-            rootCommand.Handler = CommandHandler.Create<String, String, String, String, Boolean>((input, output, pages, text, image) =>
+            rootCommand.Handler =
+                CommandHandler.Create<String, String, String, String, Boolean, String>((input, output, pages, text, image, outputPassword) =>
             {
                 Console.WriteLine($"The value for --input is : {input}");
                 Console.WriteLine($"The value for --ouptput is : {output}");
                 Console.WriteLine($"The value for --pages is : {pages}");
                 Console.WriteLine($"The value for --text is : {text}");
                 Console.WriteLine($"The value for --image is : {image}");
+
+                if (outputPassword is null)
+                    Console.WriteLine($"The value for --outputPassword is : null");
+                else
+                    Console.WriteLine($"The value for --outputPassword is not null");
 
                 if (String.IsNullOrWhiteSpace(input))
                 {
@@ -92,7 +104,24 @@ namespace watermark_utility
                     return;
                 }
 
-                PdfDocument document = new PdfDocument(new PdfReader(input), new PdfWriter(output));
+                // Create the PdfWriter that is going to be used
+                PdfWriter writer;
+                if (outputPassword is not null)
+                {
+                    // if a password was provider, use it as the Owner Password
+                    WriterProperties writerProperties = new WriterProperties();
+                    writerProperties.SetStandardEncryption(
+                        null, // no user password
+                        Encoding.UTF8.GetBytes(outputPassword), // set owner password
+                        EncryptionConstants.ALLOW_PRINTING | EncryptionConstants.ALLOW_SCREENREADERS,
+                        EncryptionConstants.ENCRYPTION_AES_128 | EncryptionConstants.DO_NOT_ENCRYPT_METADATA
+                    );
+                    writer = new PdfWriter(output, writerProperties);
+                }
+                else
+                    writer = new PdfWriter(output);
+
+                PdfDocument document = new PdfDocument(new PdfReader(input), writer);
 
                 addWatermarkToPdf(document, pages, text, image);
 

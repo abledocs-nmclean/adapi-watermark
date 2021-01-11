@@ -23,7 +23,7 @@ namespace watermark_utility_tests
                 watermark_utility.Watermarker.Main(args);
 
                 var output = sw.ToString().Trim();
-                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : \r\nThe value for --ouptput is : \r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nMissing value for --input", output);
+                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : \r\nThe value for --ouptput is : \r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nThe value for --outputPassword is : null\r\nMissing value for --input", output);
             }
         }
 
@@ -41,7 +41,7 @@ namespace watermark_utility_tests
                 watermark_utility.Watermarker.Main(args);
 
                 var output = sw.ToString().Trim();
-                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : not-valid-input\r\nThe value for --ouptput is : \r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nMissing value for --output", output);
+                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : not-valid-input\r\nThe value for --ouptput is : \r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nThe value for --outputPassword is : null\r\nMissing value for --output", output);
             }
         }
 
@@ -59,7 +59,7 @@ namespace watermark_utility_tests
                 watermark_utility.Watermarker.Main(args);
 
                 var output = sw.ToString().Trim();
-                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : not-valid-input\r\nThe value for --ouptput is : not-valid-output\r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nMissing value for --text", output);
+                Assert.AreEqual("Watermark Utility\r\nThe value for --input is : not-valid-input\r\nThe value for --ouptput is : not-valid-output\r\nThe value for --pages is : all\r\nThe value for --text is : \r\nThe value for --image is : True\r\nThe value for --outputPassword is : null\r\nMissing value for --text", output);
             }
         }
     }
