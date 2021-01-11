@@ -7,8 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\AbleDocs logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="itext7" Version="7.1.13" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20574.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\AbleDocs logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="WatermarkResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WatermarkResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="WatermarkResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WatermarkResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
