@@ -114,7 +114,9 @@ namespace watermark_utility
                         null, // no user password
                         Encoding.UTF8.GetBytes(outputPassword), // set owner password
                         EncryptionConstants.ALLOW_PRINTING | EncryptionConstants.ALLOW_SCREENREADERS,
-                        EncryptionConstants.ENCRYPTION_AES_128 | EncryptionConstants.DO_NOT_ENCRYPT_METADATA
+                        // not all PDF utilities can deal with encryption that is stronger than STANDARD_ENCRYPTION_40 so
+                        // change this at your own risk!
+                        EncryptionConstants.STANDARD_ENCRYPTION_40 | EncryptionConstants.DO_NOT_ENCRYPT_METADATA
                     );
                     writer = new PdfWriter(output, writerProperties);
                 }
