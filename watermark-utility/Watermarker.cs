@@ -65,7 +65,7 @@ namespace watermark_utility
                 CommandHandler.Create<String, String, String, String, Boolean, String>((input, output, pages, text, image, outputPassword) =>
             {
                 Console.WriteLine($"The value for --input is : {input}");
-                Console.WriteLine($"The value for --ouptput is : {output}");
+                Console.WriteLine($"The value for --output is : {output}");
                 Console.WriteLine($"The value for --pages is : {pages}");
                 Console.WriteLine($"The value for --text is : {text}");
                 Console.WriteLine($"The value for --image is : {image}");
